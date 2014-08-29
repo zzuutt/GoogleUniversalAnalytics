@@ -1,1 +1,0 @@
-{"ORDERNUMBER_PERSONALVALUE":"O-{Date(y)}\/{PadStr({id},6,0,LEFT)}","INVOICENUMBER_PERSONALVALUE":"I-{Date(y)}\/{PadStr({id},6,0,LEFT)}"}
