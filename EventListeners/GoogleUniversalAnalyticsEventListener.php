@@ -77,7 +77,7 @@ class GoogleUniversalAnalyticsEventListener implements EventSubscriberInterface
             $real_body = $body->item(0);
             $pathFile =  __DIR__."/../js/";
             $analytics = $pathFile."GoogleAnalytics.js";
-            if($readConfig['IDVALUE']=='2') $analytics = $pathFile."GoogleAnalytics.js";
+            if($readConfig['IDVALUE']=='2') $analytics = $pathFile."UniversalAnalytics.js";
 
             if (is_readable($analytics)) {
                 $src_name = file_get_contents($analytics);
