@@ -1,63 +1,71 @@
-<style>
-.command {
-  font-style:italic;
-  font-weight:bold;
-  color: #0066CC;  
-}
-.param {
-  font-style:italic;
-  font-weight:bold;
-  color:#FF6600;
-}
-</style>
 <div class="row">
-    <!-- Errors -->
-    {loop name="checkrights" type="googleuniversalanalytics.check.rights"}
-    <div class="alert alert-danger">
-        <p>{$ERRMES}  {$ERRFILE} | {intl l="Please change the access rights" d="googleuniversalanalytics.ai"}.</p>
+    <div class="col-md-12 general-block-decorator">
+        <div class="row">
+            <div class="col-md-12 title title-without-tabs">
+                {intl l="Google / Universal Analytics setup" d="googleuniversalanalytics.ai"}
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="row">
+                <div class="col-md-12">
+                    {form name="googleuniversalanalytics.configure"}
+                        <form action="{url path="/admin/module/GoogleUniversalAnalytics/saveconfig"}" method="post" {form_enctype form=$form}>
+                            {form_hidden_fields form=$form}
+                            {include file = "includes/inner-form-toolbar.html"
+                            hide_flags = true
+                            page_url   = "{url path='/admin/module/GoogleUniversalAnalytics'}"
+                            close_url  = "{url path='/admin/modules'}"
+                            }
+
+                            {if $form_error}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger">{$form_error_message}</div>
+                                    </div>
+                                </div>
+                            {/if}
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                {form_field form=$form field="TypeValue"}
+                                    <div class="form-group {if $error}has-error{/if}">
+                                        <label for="{$label_attr.for}" class="control-label">
+                                            {intl l="TypeValue" d="googleuniversalanalytics.ai"}:
+                                            {form_error form=$form field="TypeValue"}
+                                                <br />
+                                                <span class="error">{$message}</span>
+                                            {/form_error}
+                                            <br />
+                                            <label style="padding:0 0 10px 90px;">Google Analytics
+                                              <input type="radio" name="{$name}" value="1" {if $value==1}checked="checked"{/if} placeholder="{intl l="Google Analytics" d="googleuniversalanalytics.ai"}" class="form-control" />
+                                            </label>
+                                            <label style="padding:0 10px;">Universal Analytics
+                                              <input type="radio" name="{$name}" value="2" {if $value==2}checked="checked"{/if} placeholder="{intl l="Universal Analytics" d="googleuniversalanalytics.ai"}" class="form-control" />
+                                            </label>
+                                            <span class="help-block">{$label_attr.help}</span>
+                                        </label>
+                                    </div>
+                                {/form_field}
+                                {form_field form=$form field="IdValue"}
+                                    <div class="form-group {if $error}has-error{/if}">
+                                        <label for="{$label_attr.for}" class="control-label">
+                                            {intl l="IdValue" d="googleuniversalanalytics.ai"} {if $required} <span class="required">*</span>{/if}:
+                                            {form_error form=$form field="IdValue"}
+                                                <br />
+                                                <span class="error">{$message}</span>
+                                            {/form_error}
+                                            <input type="text" {if $required}aria-required="true" required{/if} id="{$label_attr.for}" name="{$name}" value="{$value}" placeholder="{intl l="Your ID analytics" d="googleuniversalanalytics.ai"}" class="form-control" />
+                                            <span class="help-block">{$label_attr.help}</span>
+                                        </label>
+                                    </div>
+                                {/form_field}
+                              </div>
+                            </div>
+                      </form>
+                  {/form}                     
+              </div>
+          </div>
+      </div>
     </div>
-    {/loop}
 </div>
-{elseloop rel="checkrights"}
-<h2>{intl l="Google / Universal Analytics setup" d="googleuniversalanalytics.ai"}</h2>
-<div class="form-container general-block-decorator">
-<div class="table table-condensed">
-{form name="googleuniversalanalytics.configure"}
-	<form action="{url path="/admin/module/GoogleUniversalAnalytics/saveconfig"}" method="POST" {form_enctype form=$form}>
-		{form_hidden_fields form=$form}
-
-        {form_field form=$form field="TypeValue"}
-        <div class="form-group {if $error}has-error{/if}">
-            <div style="width:auto; float:left; padding-right:10px;">
-            {intl l="TypeValue" d="googleuniversalanalytics.ai"} :
-            </div>
-            <div style="width:auto; float:left; padding-right:10px;">
-              <label>Google Analytics
-                <input type="radio" name="{$name}" value="1" {if $value==1}checked="checked"{/if} placeholder="{intl l="Google Analytics" d="googleuniversalanalytics.ai"}" class="form-control" />
-              </label>
-            </div>
-            <div style="width:auto; float:left; padding-right:10px;">
-              <label>Universal Analytics
-                <input type="radio" name="{$name}" value="2" {if $value==2}checked="checked"{/if} placeholder="{intl l="Universal Analytics" d="googleuniversalanalytics.ai"}" class="form-control" />
-              </label>
-            </div>
-
-        </div>
-        {/form_field}
-        {form_field form=$form field="IdValue"}
-        <div class="form-group {if $error}has-error{/if}" style="clear:both;">
-            <label for="{$label_attr.for}" class="control-label">
-                {intl l="IdValue" d="googleuniversalanalytics.ai"} :
-            </label>
-
-            <input type="text" id="{$label_attr.for}" name="{$name}" value="{$value}" placeholder="{intl l="Your ID analytics" d="googleuniversalanalytics.ai"}" class="form-control" />
-        </div>
-        {/form_field}
-		<div class="form-group" >
-			<button type="submit" name="save_mode" value="stay" class="form-submit-button btn btn-sm btn-default btn-success" title="{intl l="Save" d="googleuniversalanalytics.ai"}">{intl l="Save" d="googleuniversalanalytics.ai"} <span class="glyphicon glyphicon-ok"></span></button>
-		</div>
-	</form>
-{/form}
-</div>
-</div>
-{/elseloop}

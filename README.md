@@ -1,4 +1,4 @@
-#Google / Universal Analytics  v1.0 beta 1
+#Google / Universal Analytics  v1.0 beta 2
 for Thelia v2.0.x
 ##Summary
 Google / Universal Analytics

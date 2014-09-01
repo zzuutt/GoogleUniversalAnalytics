@@ -60,8 +60,10 @@ class Config implements ConfigInterface
                     Translator::getInstance()->trans("The file is corrupted."));
             }
         } elseif (!file_exists($path)) {
-            throw new \Exception(Translator::getInstance()->trans("The file ").$file.
-                                Translator::getInstance()->trans(" doesn't exist. You have to create it in order to use this module. Please see module's configuration page."));
+            $conf = new Config();
+    		    $conf->setGOOGLEUNIVERSALANALYTICSTYPEVALUE("2")
+                 ->setGOOGLEUNIVERSALANALYTICSIDVALUE("UA-XXXXXX-Y")
+                    ->write(GoogleUniversalAnalytics::JSON_CONFIG_PATH);
         } else {
             throw new \Exception(Translator::getInstance()->trans("Can't read file ").$file.". ".
                                 Translator::getInstance()->trans("Please change the rights on the file."));
