@@ -27,7 +27,7 @@ Puis, allez dans votre Back-office Thelia pour activer ce module.
 Pour pouvoir utiliser ce module, vous devez d'abord selectionner le type de compte
 `Google Analytics` ou `Universal Analytics` et entrer votre identiant analytics
 
-Vous devez parametrer la variable 'terms_conditions_content_id'
+Vous devez parametrer la variable `terms_conditions_content_id`
 
 ##en_US
 
@@ -41,4 +41,4 @@ Next, go to your Thelia admin panel for module activation.
 Before using this module you first need to configure the account type
 `Google Analytics` ou `Universal Analytics` and enter your ID
 
-You must set the variable 'terms_conditions_content_id'
+You must set the variable `terms_conditions_content_id`
