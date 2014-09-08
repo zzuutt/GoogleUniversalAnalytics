@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use GoogleUniversalAnalytics\Model\Config;
 use Thelia\Core\Translation\Translator;
+use Thelia\Model\ConfigQuery;
 
 class GoogleUniversalAnalyticsEventListener implements EventSubscriberInterface
 {
@@ -93,7 +94,10 @@ class GoogleUniversalAnalyticsEventListener implements EventSubscriberInterface
             if (is_readable($pathCnil)) {
                 $src_name = file_get_contents($pathCnil);
                 if ($src_name !== null) {
-                    $ret = "gaProperty = '".$readConfig['IDVALUE']."';".$src_name;
+                    $ret = "gaProperty = '".$readConfig['IDVALUE']."';
+                    sentenceConsent = \"".Translator::getInstance()->trans("En continuant à naviguer, vous nous autorisez à déposer des cookies à des fins de mesure d'audience. ")."<a href='".$readConfig['LINKCGV']."'>".Translator::getInstance()->trans("En savoir plus")."</a>\";
+                    sentenceNoConsent = \"".Translator::getInstance()->trans("Vous vous êtes opposé au dépôt de cookies de mesures d'audience dans votre navigateur. ")."\";
+                    ".$src_name;
                 } else {
                     throw new \Exception(Translator::getInstance()->trans("Can't read file ").$pathCnil.". ".
                         Translator::getInstance()->trans("The file is corrupted."));
