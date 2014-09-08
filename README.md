@@ -1,4 +1,4 @@
-#Google / Universal Analytics  v1.0 beta 2
+#Google / Universal Analytics  v1.10 beta 1
 for Thelia v2.0.x
 ##Summary
 Google / Universal Analytics
@@ -27,6 +27,8 @@ Puis, allez dans votre Back-office Thelia pour activer ce module.
 Pour pouvoir utiliser ce module, vous devez d'abord selectionner le type de compte
 `Google Analytics` ou `Universal Analytics` et entrer votre identiant analytics
 
+Vous devez parametrer la variable 'terms_conditions_content_id'
+
 ##en_US
 
 ### How to install
@@ -39,4 +41,4 @@ Next, go to your Thelia admin panel for module activation.
 Before using this module you first need to configure the account type
 `Google Analytics` ou `Universal Analytics` and enter your ID
 
-
+You must set the variable 'terms_conditions_content_id'
