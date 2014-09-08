@@ -9,6 +9,7 @@ class Config implements ConfigInterface
 {
     protected $TYPEVALUE=null;
     protected $IDVALUE=null;
+    protected $LINKCGV=null;
     
     public function __construct()
     {
@@ -63,6 +64,7 @@ class Config implements ConfigInterface
             $conf = new Config();
     		    $conf->setGOOGLEUNIVERSALANALYTICSTYPEVALUE("2")
                  ->setGOOGLEUNIVERSALANALYTICSIDVALUE("UA-XXXXXX-Y")
+                 ->setGOOGLEUNIVERSALANALYTICSLINKCGV("You must set the variable 'terms terms content_id'")
                     ->write(GoogleUniversalAnalytics::JSON_CONFIG_PATH);
         } else {
             throw new \Exception(Translator::getInstance()->trans("Can't read file ").$file.". ".
@@ -85,6 +87,11 @@ class Config implements ConfigInterface
 
         return $this;
     }
+    public function setGOOGLEUNIVERSALANALYTICSLINKCGV($LINKCGV)
+    {
+        $this->LINKCGV = $LINKCGV;
 
+        return $this;
+    }
 
 }

@@ -67,6 +67,16 @@ class ConfigureFormulaire extends BaseForm
                     new Constraints\NotBlank()
                 )
             ))
+            ->add('linkCGV', 'text', array(
+                'label' => Translator::getInstance()->trans('linkCGV'),
+                'label_attr' => array(
+                    'for' => 'linkCGV'
+                ),
+                'data' => (null === $values ?'':$values["LINKCGV"]),
+                'constraints' => array(
+                    new Constraints\NotBlank()
+                )
+            ))
         ;
     }
 }

@@ -23,10 +23,7 @@ function askConsent(){
     div.setAttribute('id','cookie-banner');
     // Le code HTML de la demande de consentement
     // Vous pouvez modifier le contenu ainsi que le style
-    div.innerHTML =  '\
-    En continuant à naviguer, vous nous autorisez à déposer des cookies à des fins de \
-    mesure d\'audience.  Pour s\'opposer à ce dépôt vous pouvez cliquer  \
-    <a href="javascript:gaOptout()">ici</a>.';          
+    div.innerHTML = sentenceConsent;          
     bodytag.insertBefore(div,bodytag.firstChild); // Ajoute la bannière juste au début de la page 
     document.getElementsByTagName('body')[0].className+=' cookiebanner';              
 }
@@ -65,11 +62,11 @@ function deleteAnalyticsCookies() {
 function gaOptout() {
     document.cookie = disableStr + '=true;'+ getCookieExpireDate() +' ; path=/';       
     document.cookie = 'hasConsent=false;'+ getCookieExpireDate() +' ; path=/';
+    askConsent();
     var div = document.getElementById('cookie-banner');
     // Ci dessous le code de la bannière affichée une fois que l'utilisateur s'est opposé au dépôt
     // Vous pouvez modifier le contenu et le style
-    if ( div!= null ) div.innerHTML = 'Vous vous êtes opposé \
-    au dépôt de cookies de mesures d\'audience dans votre navigateur.'
+    if ( div!= null ) div.innerHTML = sentenceNoConsent;
     window[disableStr] = true;
     deleteAnalyticsCookies();
 }

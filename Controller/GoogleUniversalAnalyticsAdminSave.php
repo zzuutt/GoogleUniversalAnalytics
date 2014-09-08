@@ -19,6 +19,7 @@ class GoogleUniversalAnalyticsAdminSave extends BaseAdminController
             $vform = $this->validateForm($form);
     		$conf->setGOOGLEUNIVERSALANALYTICSTYPEVALUE($vform->get('TypeValue')->getData())
         ->setGOOGLEUNIVERSALANALYTICSIDVALUE($vform->get('IdValue')->getData())
+        ->setGOOGLEUNIVERSALANALYTICSLINKCGV($vform->get('linkCGV')->getData())
                     ->write(GoogleUniversalAnalytics::JSON_CONFIG_PATH);
         $this->redirectToRoute("admin.module.configure",array(),
         array ( 'module_code'=>"GoogleUniversalAnalytics",

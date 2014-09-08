@@ -60,6 +60,30 @@
                                         </label>
                                     </div>
                                 {/form_field}
+                                {form_field form=$form field="linkCGV"}
+                                    <div class="form-group {if $error}has-error{/if}">
+                                        <label for="{$label_attr.for}" class="control-label">
+                                            {intl l="linkCGV" d="googleuniversalanalytics.ai"} {if $required} <span class="required">*</span>{/if}:
+                                            {form_error form=$form field="linkCGV"}
+                                                <br />
+                                                <span class="error">{$message}</span>
+                                            {/form_error}
+                                            {$termsAndConditionsId={config key="terms_conditions_content_id"}}
+                                            {$termsAndConditionsUrl=""}
+                                            {if $termsAndConditionsId}
+                                              {loop name="content-terms" type="content" id=$termsAndConditionsId}
+                                                {$termsAndConditionsUrl=$URL}
+                                              {/loop}
+                                            {/if}
+                                            {if $termsAndConditionsUrl==""}{$termsAndConditionsUrl={intl l="You must set the variable 'terms_conditions_content_id'" d="googleuniversalanalytics.ai"}}{/if}
+                                            <input type="text" {if $required}aria-required="true" required{/if} id="{$label_attr.for}" name="{$name}" value="{$termsAndConditionsUrl|replace:'index_dev.php/':''}" placeholder="{intl l="link to the Terms page" d="googleuniversalanalytics.ai"}" class="form-control" size="100" readonly/>
+                                            <span class="help-block">{$label_attr.help}</span>
+                                        </label>
+                                    </div>
+                                {/form_field}
+                                <div>
+                                {intl l="Add in your terms conditions, Cookie section, a link with the following action" d="googleuniversalanalytics.ai"} : <code>href="javascript:gaOptout()"</code><br>{intl l="You can change the style of the banner" d="googleuniversalanalytics.ai"} -> <code>id="cookie-banner"</code>
+                                </div>
                               </div>
                             </div>
                       </form>
